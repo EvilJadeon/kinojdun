@@ -1,0 +1,31 @@
+<%= form_with model: @post do |form| %>
+  <fieldset>
+    <div class="mb-3">
+      <label for="disabledSelect" class="form-label">Category</label>
+      <%= form.select(:category, options_for_select([
+        ['Movie', 'Movie'],
+        ['Serial', 'Serial'],
+        ['Cartoon', 'Cartoon']]), class: 'form-select') %>
+    </div>
+    <div class="mb-3">
+      <label for="disabledTextInput" class="form-label">Title</label>
+      <%= form.text_field :title, class: 'form-control', placeholder: 'You can write something here' %>
+    </div>
+    <div class="mb-3">
+      <label for="disabledTextInput" class="form-label">Description</label>
+      <%= form.text_area :body, class: 'form-control', placeholder: 'You can write something here' %>
+    </div>
+    <div class="mb-3">
+      <label for="disabledTextInput" class="form-label">Image</label>
+      <%= form.file_field :image, class: 'form-control' %>
+
+      <% if @post.image.attached? %>
+        <%= image_tag @post.image, style: "width: 200px; display: block" %>
+      <% end %>
+    </div>
+    <div class="mb-3">
+      <%= form.submit :Submit, class: 'btn btn-primary' %>
+      <%= link_to 'Back', :back, class: 'btn btn-danger' %>
+    </div>
+  </fieldset>
+<% end %>
